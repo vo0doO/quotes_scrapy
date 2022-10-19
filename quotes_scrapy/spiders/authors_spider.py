@@ -1,6 +1,4 @@
-from tracemalloc import start
 import scrapy
-from traitlets import default
 
 
 class AuthorsSpider(scrapy.Spider):
