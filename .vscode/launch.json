@@ -9,7 +9,7 @@
             "justMyCode": true,
             "args": [
                 "crawl",
-                "authors"
+                "quotes"
             ]
         }
     ],
