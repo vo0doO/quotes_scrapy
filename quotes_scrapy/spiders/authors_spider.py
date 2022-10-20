@@ -1,4 +1,5 @@
 import scrapy
+import hashlib
 
 
 class AuthorsSpider(scrapy.Spider):
@@ -9,8 +10,10 @@ class AuthorsSpider(scrapy.Spider):
     def parse_authors(self, response):
         def extract_with_css(query):
             return response.css(query).get(default="").strip()
+        name = extract_with_css('.author-title::text')
         yield {
-            'name': extract_with_css('.author-title::text'),
+            'hash': hashlib.md5(name.encode('utf-8')).hexdigest(),
+            'name': name,
             'birthdate': extract_with_css("span.author-born-date::text"),
             'bio': extract_with_css(".author-description::text")
         }
